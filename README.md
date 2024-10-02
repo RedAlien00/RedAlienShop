@@ -51,7 +51,16 @@
 <br>
 
 # Server Connection
+<p align="center"><img width="794" alt="스크린샷 2024-10-02 오후 4 51 25" src="https://github.com/user-attachments/assets/643349f0-3143-4a10-ba9e-b924b3a8c8dc"></p>
 
+
+1. 서버를 실행합니다
+<p align="center">
+    <img width="200" alt="스크린샷 2024-10-02 오후 4 54 12" src="https://github.com/user-attachments/assets/5e9144fe-9c58-4ac3-96ae-3f8ef873f382">
+    
+</p>
+2. 앱을 실행한 후, 우측 상단의 지구 모양 아이콘을 클릭합니다<br>
+3. 위의 그림과 같이 IP와 Port를 입력한 후, Submit 버튼을 클릭하면 서버와 연결됩니다
 
 # License
 
