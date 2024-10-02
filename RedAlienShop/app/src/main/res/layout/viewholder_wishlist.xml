@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wishlist_container"
+    android:layout_width="175dp"
+    android:layout_height="245dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_product">
+
+    <ImageView
+        android:id="@+id/wishlist_img"
+        android:layout_width="157dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_cart" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@drawable/bg_product_under"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RatingBar
+        android:id="@+id/wishlist_ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:numStars="5"
+        android:progressTint="#FFD600"
+        android:rating="3"
+        android:stepSize="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.259" />
+
+    <TextView
+        android:id="@+id/wishlist_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="brand"
+        android:textAlignment="textEnd"
+        android:textColor="@color/gray"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wishlist_ratingBar"
+        app:layout_constraintEnd_toEndOf="@+id/wishlist_title"
+        app:layout_constraintTop_toTopOf="@+id/wishlist_ratingBar" />
+
+    <TextView
+        android:id="@+id/wishlist_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:lines="2"
+        android:maxLines="2"
+        android:text="Title"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wishlist_ratingBar" />
+
+    <TextView
+        android:id="@+id/wishlist_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="1,000$"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/wishlist_ic"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_comment"
+        app:layout_constraintBottom_toBottomOf="@+id/wishlist_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wishlist_price"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/wishlist_comments_count"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        android:text="5"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wishlist_ic"
+        app:layout_constraintEnd_toStartOf="@+id/wishlist_ic"
+        app:layout_constraintTop_toTopOf="@+id/wishlist_ic" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_explorer"
+        android:icon="@drawable/ic_explorer"
+        android:title="Explorer"/>
+    <item
+        android:icon="@drawable/ic_wishlist"
+        android:id="@+id/item_wishlist"
+        android:title="Wishlist" />
+    <item
+        android:icon="@drawable/ic_cart"
+        android:id="@+id/item_cart"
+        android:title="Cart" />
+    <item
+        android:icon="@drawable/ic_profile"
+        android:id="@+id/item_profile"
+        android:title="Profile" />
+</menu>

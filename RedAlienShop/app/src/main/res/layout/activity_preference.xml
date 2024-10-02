@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/bg_gradient"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PreferenceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_preference"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="Server Settings"
+        android:textSize="37sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/edit_serverip"
+        style="@style/EditText_style"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:hint="Server IP"
+        android:inputType="text"
+        android:maxLength="14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textserver" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/serverset_button"
+        style="@style/Button_style"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_serverport"
+        app:layout_constraintVertical_bias="0.645" />
+
+    <TextView
+        android:id="@+id/networkstate"
+        android:layout_width="150sp"
+        android:layout_height="27sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="80dp"
+        android:text="Not Connected"
+        android:textAlignment="center"
+        android:textColor="#F50057"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textnetwork"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/serverstate"
+        android:layout_width="150sp"
+        android:layout_height="27sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="80dp"
+        android:text="Not Connected"
+        android:textAlignment="center"
+        android:textColor="#F50057"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.964"
+        app:layout_constraintStart_toEndOf="@+id/textserver"
+        app:layout_constraintTop_toBottomOf="@+id/networkstate" />
+
+    <TextView
+        android:id="@+id/textnetwork"
+
+        android:layout_width="100sp"
+        android:layout_height="27sp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="15dp"
+        android:text="Network :"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/networkstate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textserver"
+        android:layout_width="100sp"
+        android:layout_height="27dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="15dp"
+        android:text="Server :"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_serverip"
+        app:layout_constraintEnd_toStartOf="@+id/serverstate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnetwork"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/edit_serverport"
+        style="@style/EditText_style"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Server Port"
+        android:inputType="number|numberDecimal"
+        android:maxLength="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_serverip" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="117dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_preference"
+        app:srcCompat="@drawable/ic_db" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" >
+        <color android:color="@color/red_more"/>
+    </item>
+
+    <item>
+        <ripple xmlns:android="http://schemas.android.com/apk/res/android"
+            android:color="@color/red_less"
+            android:radius="23dp">
+        </ripple>
+    </item>
+
+</layer-list>

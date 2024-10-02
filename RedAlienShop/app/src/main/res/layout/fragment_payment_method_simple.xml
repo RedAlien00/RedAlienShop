@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Fragment.FragmentPaymentMethodCard">
+
+    <RadioGroup
+        android:weightSum="1"
+        android:id="@+id/payment_method_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/toss_conatainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/bg_paymentmethod"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:weightSum="1">
+
+            <RadioButton
+                android:id="@+id/radiobtn_toss"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.1"
+                android:clickable="false"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_toss" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="토스페이"
+                        android:textColor="@color/light_gray2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2만원 이상 1천원 선착순 할인(매일 0시 300명, 18시 300명)"
+                        android:textColor="@color/blue" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/naver_conatainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/bg_paymentmethod"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:weightSum="1">
+
+            <RadioButton
+                android:clickable="false"
+                android:id="@+id/radiobtn_naver"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.1"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_naver" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="네이버페이"
+                        android:textColor="@color/light_gray2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2만원 이상 1천원 선착순 할인(매일 0시 300명, 18시 300명)"
+                        android:textColor="@color/blue" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/payco_conatainer"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="0.25"
+            android:background="@drawable/bg_paymentmethod"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:weightSum="1">
+
+            <RadioButton
+                android:clickable="false"
+                android:id="@+id/radiobtn_payco"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.1"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_payco" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="페이코"
+                        android:textColor="@color/light_gray2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/kakao_conatainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/bg_paymentmethod"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:weightSum="1">
+
+            <RadioButton
+                android:clickable="false"
+                android:id="@+id/radiobtn_kakao"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="0.1"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_kakao" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카카오페이"
+                        android:textColor="@color/light_gray2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"></LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RadioGroup>
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Fragment.FragmentPaymentMethodCard"
+    android:padding="5dp">
+    <LinearLayout
+        android:id="@+id/register_account_container"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_account"
+        android:elevation="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/register_account_img"
+            android:visibility="visible"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_register" />
+        <TextView
+            android:id="@+id/register_account_text"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="계좌 등록하기"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendard_bold"/>
+        <LinearLayout
+            android:id="@+id/register_account_onregister_container"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/register_account_onregister_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KB 국민은행"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/register_account_onregister_accountnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="94160200485144"
+                android:textColor="@color/white_less"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

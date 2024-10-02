@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="ModalBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@drawable/modal_bottom_sheet_design</item>
+        <item name="android:minHeight">270dp</item>
+
+    </style>
+
+    <style name="ModalBottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/ModalBottomSheet</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Shop" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
+<!--   아이콘 width 조절      <item name="android:actionButtonStyle">@style/myActionButtonStyle</item>-->
+    </style>
+
+<!--    <style name="myActionButtonStyle" parent="Widget.AppCompat.ActionButton">-->
+<!--        <item name="android:minWidth">90dp</item>-->
+<!--        <item name="android:maxWidth">90dp</item>-->
+<!--        <item name="android:width">90dp</item>-->
+<!--    </style>-->
+
+    <style name="Theme.Shop" parent="Base.Theme.Shop" />
+
+    <style name="bg_gradient">
+        <item name="android:background">@drawable/bg_gradient</item>
+    </style>
+
+    <style name="Button_style">
+        <item name="android:background">@drawable/bg_radius</item>
+        <item name="android:backgroundTint">@color/red</item>
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white_less</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:elevation">50dp</item>
+        <item name="android:enabled">true</item>
+    </style>
+
+
+    <style name="EditText_style">
+        <item name="android:background">@drawable/bg_radius</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:minHeight">56.31dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColorHint">@color/light_gray</item>
+    </style>
+
+</resources>

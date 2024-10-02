@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="24dp"
+    android:gravity="center"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:textAlignment="center">
+
+    <ImageView
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:id="@+id/brandlogo_img"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:srcCompat="@drawable/ic_nike" />
+
+    <TextView
+        android:id="@+id/brandname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The\nNorth\nFace"
+        android:textAlignment="center" />
+</LinearLayout>

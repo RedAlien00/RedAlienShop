@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/preference"
+            android:layout_width="100sp"
+            android:layout_height="300dp"
+            android:icon="@drawable/ic_server"
+            android:title="Preference"
+
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_refreash"
+            android:title="Restart"
+            app:showAsAction="ifRoom" />
+    </menu>
+<!--아래 속성을 item에 추가하면 아이콘 클리 시, 펼쳐지는 검색 버튼 구현 가능-->
+<!--    app:actionViewClass="android.widget.SearchView"-->

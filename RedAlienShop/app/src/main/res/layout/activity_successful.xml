@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SuccessfulActivity"
+    android:background="@drawable/bg_gradient"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+        <LinearLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_product"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_payment_successful"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제 성공"
+                android:textSize="30sp"
+                android:fontFamily="@font/pretendard_bold"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RedAlien Shop을\n이용해주셔서 감사합니다"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/light_gray2"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/successful_btn"
+                android:layout_marginTop="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="홈으로"
+                android:textSize="20sp"
+                android:fontFamily="@font/pretendard_bold"
+                android:background="@drawable/bg_checkbutton"/>
+        </LinearLayout>
+
+
+
+
+
+</LinearLayout>

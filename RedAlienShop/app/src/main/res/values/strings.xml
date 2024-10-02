@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RedAlien shop</string>
+    <string name="title_activity_network">Network</string>
+    <string name="sign_in">Sign in</string>
+    <string name="by_redalien">by RedAlien</string>
+    <string name="don_t_have_an_account">Don\'t have an Account?</string>
+    <string name="here"><u>here</u></string>
+    <string name="btapple">btApple</string>
+    <string name="btfacebook">btFacebook</string>
+    <string name="btgoogle">btgoogle</string>
+    <string name="bgline">bgline</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

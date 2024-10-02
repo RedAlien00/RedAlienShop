@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/bg_gradient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.LoginActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/login_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ImageView
+        android:id="@+id/logoOnSignin"
+        android:layout_width="216dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="logoOnSignin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_toolbar"
+        app:srcCompat="@drawable/logo_redalien" />
+
+    <EditText
+        android:id="@+id/create_act_fullname"
+        style="@style/EditText_style"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:autofillHints="Username"
+        android:hint="Username"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoOnSignin" />
+
+    <EditText
+        android:id="@+id/password"
+        style="@style/EditText_style"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autofillHints="Password"
+        android:hint="Password"
+
+        android:inputType="text|textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_act_fullname" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btSignIn"
+        style="@style/Button_style"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/sign_in"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <ImageView
+        android:id="@+id/imgLine"
+        android:layout_width="336dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/bgline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSignIn"
+        app:srcCompat="@drawable/bg_line" />
+
+    <ImageButton
+        android:id="@+id/btGoogle"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_effect"
+        android:contentDescription="@string/btgoogle"
+        app:layout_constraintStart_toStartOf="@+id/btSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/imgLine"
+        app:srcCompat="@drawable/bt_google" />
+
+    <ImageButton
+        android:id="@+id/btFacebook"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_effect"
+        android:contentDescription="@string/btfacebook"
+        app:layout_constraintEnd_toStartOf="@+id/btApple"
+        app:layout_constraintStart_toEndOf="@+id/btGoogle"
+        app:layout_constraintTop_toBottomOf="@+id/imgLine"
+        app:srcCompat="@drawable/bt_facebook"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btApple"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ripple_effect"
+        android:contentDescription="@string/btapple"
+        app:layout_constraintEnd_toEndOf="@+id/btSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/imgLine"
+        app:srcCompat="@drawable/bt_apple" />
+
+    <TextView
+        android:id="@+id/forgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/pretendard_medium"
+        android:text="Forget Password?"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/here1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btFacebook"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/here1"
+        android:layout_width="40dp"
+        android:layout_height="25sp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:background="@drawable/ripple_effect_small"
+
+        android:focusable="true"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="@string/here"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/forgetPassword"
+        app:layout_constraintTop_toBottomOf="@+id/btApple"
+        tools:ignore="MissingConstraints,TextViewEdits" />
+
+    <TextView
+        android:id="@+id/dont_have_act"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/don_t_have_an_account"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
+
+    <TextView
+        android:id="@+id/here2"
+        android:layout_width="40dp"
+        android:layout_height="25sp"
+        android:background="@drawable/ripple_effect_small"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:focusable="true"
+        android:fontFamily="@font/pretendard_bold"
+        android:minWidth="48dp"
+        android:text="@string/here"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/dont_have_act"
+        app:layout_constraintTop_toBottomOf="@+id/here1"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

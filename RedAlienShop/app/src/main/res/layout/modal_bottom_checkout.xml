@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:textAlignment="center">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/delivery_address_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="57dp">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="배송지 추가"
+            android:textSize="20sp"
+            android:fontFamily="@font/pretendard_bold"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/delivery_address_person"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="받는 분"
+        android:inputType="text"
+        android:maxLength="8" />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/delivery_address_postalcode"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:hint="우편번호"
+            android:maxLength="5"
+            android:inputType="number" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/delivery_address_search_btn"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_checkbutton"
+            android:text="우편번호 검색"
+            android:fontFamily="@font/pretendard_bold"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/delivery_address_address"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="주소"
+        android:inputType="text|textPostalAddress"
+        android:maxLength="18" />
+
+    <EditText
+        android:id="@+id/delivery_address_detail_address"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="상세주소"
+        android:inputType="text"
+        android:maxLength="22" />
+
+    <EditText
+        android:id="@+id/delivery_address_phonumber"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:hint="연락처 ( &quot;-&quot; 없이 입력 )"
+        android:inputType="number"
+        android:maxLength="11" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_under"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delivery_address_commit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:enabled="false"
+        android:background="@drawable/bg_checkbutton_gray"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="배송지 입력하기"
+        android:textSize="15sp" />
+</LinearLayout>
