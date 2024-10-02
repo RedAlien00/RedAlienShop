@@ -1,2 +1,3 @@
 flask_writeup.py
 *.DS_Store
+*.log
