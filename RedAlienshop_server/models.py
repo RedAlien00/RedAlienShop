@@ -69,10 +69,6 @@ class Products(db.Model):
               "price" : self.price,
               "comments_count" :  self.comments_count
               }
-    # Python에서 복잢한 Byte 데이터를 JSON형식으로 변환할 때는 Byte를 문자열로 디코딩 한 후, JSON으로 변환하는 것이 일반적이다
-    # 방법 1 : <byte 객체>.decode("utf-8"), utf-8 에러 발생 할 경우, utf-16으로 하기
-    # 방법 2 : str(<byte 객체>, "utf-8")
-    # 하지만 이미지 데이터는 텍스트 데이터가 아니기 때문에, Base64로 인코딩 한 후, 문자열로 디코딩 하는게 좋다
 
 class Comments(db.Model):
   __tablename__ = "Comments"

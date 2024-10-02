@@ -16,9 +16,6 @@ def create_app():
 
   migrate = Migrate(app, db)
 
-
-
-
   return app
 
   
