@@ -42,7 +42,7 @@
 14. Point Tampering Vulnerability
 <br>
 
-# 설치 방법 : 서버 설치
-1. 
-1. 설치 받은 파일 경로에서 ```pip install -r requirements.txt```
-2. ```python run.py```
+# 설치 방법 : 서버 설치 및 실행
+1. `git clone https://github.com/RedAlien00/RedAlienShop.git`
+2. `cd RedAlienShop/RedAlienshop_server && pip3.12 install -r requirements.txt`
+3. ```python run.py```
