@@ -17,8 +17,9 @@
 <br>
 
 * Android Version : 9 ~ 14
+<br>
 
-# 구현 취약점
+# Implementation vulnerabilities
 0. Weak Login Credentials
 1. Application Debuggable
 2. Allow Data Backup
@@ -42,7 +43,21 @@
 14. Point Tampering Vulnerability
 <br>
 
-# 설치 방법 : 서버 설치 및 실행
+# Install and run the server
 1. `git clone https://github.com/RedAlien00/RedAlienShop.git`
 2. `cd RedAlienShop/RedAlienshop_server && pip3.12 install -r requirements.txt`
 3. ```python run.py```
+
+<br>
+
+# Server Connection
+
+
+# License
+
+- https://redalien.tistory.com/
+
+```
+Designed and developed by 2024 RedAlien 
+```
+
