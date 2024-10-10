@@ -79,7 +79,6 @@ public class DoDetect extends AppCompatActivity {
     // 루팅 안되어 있는 Galaxy Note9에서 실험해본 결과, 탐지하지 않음 = 정상작동한다는 의미
     public static boolean isExecuteSu(){
         Process process = null;
-        Process process2 = null;
         try {
             // Runtime.getRuntime().exec()의 경우, 실행조차 할 수 없으면 IOException을 발생시킴
             // 실행이 됐다면 해당 binary가 존재한다는 것
