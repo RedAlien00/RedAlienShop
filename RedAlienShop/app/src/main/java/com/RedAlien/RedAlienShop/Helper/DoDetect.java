@@ -80,16 +80,14 @@ public class DoDetect extends AppCompatActivity {
     public static boolean isExecuteSu(){
         Process process = null;
         try {
-            // Runtime.getRuntime().exec()의 경우, 실행조차 할 수 없으면 IOException을 발생시킴
-            // 실행이 됐다면 해당 binary가 존재한다는 것
-            // 이상한 점 : type su를 하면 su가 있음에도 에러가 발생함
+            // type을 사용할 경우, 제대로 탐지하지 못함
             process = Runtime.getRuntime().exec(new String[] { "which", "su" });
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            Log.i(TAG, "isExecuteSu() : \ttrue");
-            return br.readLine() != null;
-            // 실행조차 할 수 없으면 예외를 발생시킴에도 null 검사를 하는 이유 :
-            // null 검사를 하지 않으면 Galaxy 9에서 루팅되어 있다고 오탐 해버리기 때문
+            boolean result = br.readLine() != null;
+            Log.i(TAG, "isExecuteSu() : \t"+ String.valueOf(result) );
+
+            return result;
         } catch (Exception e){
             Log.i(TAG, "isExecuteSu : \tfalse");
             return false;
