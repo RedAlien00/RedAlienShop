@@ -42,7 +42,6 @@ public class DoDetect extends AppCompatActivity {
                 if(file.exists() ) {
                     Log.i(TAG, "isRooted1() : \t\ttrue : " + path);
                     return true;
-                } else {
                 }
             }
         } catch(Exception e){
