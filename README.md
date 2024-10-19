@@ -19,6 +19,13 @@
 * Android Version : 9 ~ 14
 <br>
 
+# Issue
+* 2024-10-19 - Nox에서 사용시 오류
+
+    * 현재 AVD( Android Studio Virtual Device )에서는 정상적으로 Detact하나, Nox에서 Detact하지 못하는 오류가 확인되었습니다
+    빠른 시일내로 수정하겠습니다
+<br>
+
 # Implementation vulnerabilities
 0. Weak Login Credentials
 1. Application Debuggable
