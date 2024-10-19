@@ -23,6 +23,10 @@
 * 확인되는대로 업데이트 하겠습니다
 <br>
 
+# Info
+* Detact가 될 경우, 경고창은 띄우지만 ${\textsf{\color{magenta}앱은 종료되지 않습니다}}$
+<br>
+
 # Implementation vulnerabilities
 0. Weak Login Credentials
 1. Application Debuggable
@@ -65,6 +69,10 @@
 </p>
 2. 앱을 실행한 후, 우측 상단의 지구 모양 아이콘을 클릭합니다<br>
 3. 위의 그림과 같이 IP와 Port를 입력한 후, Submit 버튼을 클릭하면 서버와 연결됩니다
+
+
+<br>
+
 
 # License
 
