@@ -35,6 +35,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if (DoDetect.isRooted1()
                 || DoDetect.isRooted2()
+                || DoDetect.isRootPackages(this)
                 || DoDetect.isExecuteSu()
                 || DoDetect.isEmulator()
                 || DoDetect.isDeveloper(this)

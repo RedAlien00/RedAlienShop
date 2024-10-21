@@ -1,6 +1,7 @@
 package com.RedAlien.RedAlienShop.Helper;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
@@ -23,10 +24,11 @@ public class DoDetect extends AppCompatActivity {
     public native boolean nativeIsFridaMapped();
     public native boolean nativeIsFridaBinary();
     public native boolean nativeIsFridaServerListening();
+    public native boolean nativeIsSuBinary();
     public native void goodbye();
 
     public boolean nativeDetectAll(){
-        return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening();
+        return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening() | nativeIsSuBinary();
     }
 
     
@@ -70,6 +72,36 @@ public class DoDetect extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.i(TAG, "isRooted2() : \t\tfalse" );
+        return false;
+    }
+
+    // Android 9과 14모두 가능 but 11이상부터는 Manifest파일 <queries>태그에 검사할 패키지를 명시해야함
+    public static boolean isRootPackages(Context context){
+         final String[] knownRootAppsPackages = {
+                "com.noshufou.android.su",
+                "com.noshufou.android.su.elite",
+                "eu.chainfire.supersu",
+                "com.koushikdutta.superuser",
+                "com.thirdparty.superuser",
+                "com.yellowes.su",
+                "com.topjohnwu.magisk",
+                "com.kingroot.kinguser",
+                "com.kingo.root",
+                "com.smedialink.oneclickroot",
+                "com.zhiqupk.root.global",
+                "com.alephzain.framaroot",
+         };
+        PackageManager pm = context.getPackageManager();
+        for( String pkg : knownRootAppsPackages){
+            try {
+                pm.getPackageInfo(pkg, 0);
+                Log.i(TAG, "isRootPackages() : \ttrue - " + pkg);
+                return true;
+            } catch (Exception e){
+                // 예외 발생 시, 해당 패키지가 설치되지 않은 것
+            }
+        }
+        Log.i(TAG, "isRootPackages() : \tfalse");
         return false;
     }
 

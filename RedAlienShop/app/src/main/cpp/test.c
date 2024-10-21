@@ -57,12 +57,12 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaBinary(JNIEnv *env, 
             sprintf(filename, filename_template,current_version, current_arch);
 
             if (access(filename, F_OK) == 0) {
-                __android_log_print(ANDROID_LOG_INFO, TAG, "Check! : %s", filename);
+                __android_log_print(ANDROID_LOG_INFO, TAG, "[+] Frida binary found ! : %s", filename);
                 return true;
             }
         }
     }
-    __android_log_print(ANDROID_LOG_INFO, TAG, "Failed to Access");
+    __android_log_print(ANDROID_LOG_INFO, TAG, "[-] Frida binary not found");
     return false;
 }
 
@@ -75,17 +75,17 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaMapped(JNIEnv *env, 
     FILE *fp = fopen(PROC_MAPS, "r");
 
     if (fp == NULL) {
-        __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to open : %s", PROC_MAPS);
+        __android_log_print(ANDROID_LOG_WARN, TAG, "[-] Failed to open : %s", PROC_MAPS);
         return false;
     }
     while (fgets(buffer, sizeof(buffer), fp )){
         if(strstr(buffer, "frida")){
-            __android_log_print(ANDROID_LOG_WARN, TAG, "Frida library has been mapped !!");
+            __android_log_print(ANDROID_LOG_WARN, TAG, "[+] Frida library has been mapped !!");
             fclose(fp);
             return true;
         }
     }
-    __android_log_print(ANDROID_LOG_WARN, TAG, "Frida library is not mapped");
+    __android_log_print(ANDROID_LOG_WARN, TAG, "[-] Frida library is not mapped");
     return false;
 
 }
@@ -104,10 +104,10 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaServerListening(JNIE
     int sock = socket(AF_INET, SOCK_STREAM, 0);
 
     if(  connect(sock, (struct sockaddr*)&sa, sizeof(sa)) == -1){
-        __android_log_print(ANDROID_LOG_WARN, TAG, "Frida Server is not Listening");
+        __android_log_print(ANDROID_LOG_WARN, TAG, "[-] Frida Server is not Listening");
         return false;
     }
-    __android_log_print(ANDROID_LOG_WARN, TAG, "Frida Server is Listening !");
+    __android_log_print(ANDROID_LOG_WARN, TAG, "[+] Frida Server is Listening !");
     return true;
 
 }
@@ -115,4 +115,21 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaServerListening(JNIE
 JNIEXPORT void JNICALL
 Java_com_RedAlien_RedAlienShop_Helper_DoDetect_goodbye(JNIEnv *env, jobject thiz) {
     _exit(0);
+}
+
+JNIEXPORT jboolean JNICALL
+Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsSuBinary(JNIEnv *env, jobject thiz) {
+    const char *su_paths[] = {
+        "/sbin/su", "/system/bin/su", "/system/xbin/su", "/system/sd/xbin/su",
+        "/system/bin/failsafe/su", "/data/local/su", "/data/local/xbin/su",NULL
+    };
+    // access가 성공하면 0, 실패하면 -1
+    for (int i = 0; su_paths[i] != NULL; i++) {
+        if( access(su_paths[i], F_OK) == 0 ){
+            __android_log_print(ANDROID_LOG_WARN, TAG, "[*] su binary found ! : %s", su_paths[i]);
+            return true;
+        }
+    }
+    __android_log_print(ANDROID_LOG_WARN, TAG, "[-] su binary not found");
+    return false;
 }
