@@ -36,12 +36,14 @@ public class SplashActivity extends AppCompatActivity {
         if (DoDetect.isRooted1()
                 || DoDetect.isRooted2()
                 || DoDetect.isExecuteSu()
-                || DoDetect.isEmulator()
+                || DoDetect.isEmulator1()
+                || DoDetect.isEmulator2()
                 || DoDetect.isDeveloper(this)
                 || DoDetect.isFridaServerOn1()
                 || DoDetect.isFridaServerOn2()
                 || new DoDetect().nativeDetectAll()
         ) alertDialog();
+
         else {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

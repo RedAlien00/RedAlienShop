@@ -29,7 +29,7 @@ public class DoDetect extends AppCompatActivity {
         return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening();
     }
 
-    
+
     // Android 9에서는 Detect되지만 14에서는 안됨
     public static boolean isRooted1() {
         String[] paths = {"/sbin/su", "/system/bin/su", "/system/xbin/su", "/system/sd/xbin/su",
@@ -98,13 +98,54 @@ public class DoDetect extends AppCompatActivity {
     // 코드 참고 - https://medium.com/@sindee.dev/how-to-add-root-and-emulator-detection-checking-for-android-app-a11da0dc9148
     // Android 9, 14에서 모두 동작하는 것으로 확인
     // 해당 함수에서 감지하는 내용은 /system/build.prop 파일에 있음
-    public static boolean isEmulator(){
-        boolean result = Build.FINGERPRINT.contains("sdk")
-                || Build.TAGS.contains("dev-keys")
-                || Build.MODEL.toLowerCase().contains("sdk")
-                || Build.PRODUCT.toLowerCase().contains("sdk");
-        Log.i(TAG, "isEmulator() : \t\t" + String.valueOf(result));
-        return result;
+    public static boolean isEmulator1() {
+        String board = Build.BOARD;     // 기기의 하드웨어 플렛폼
+        String device = Build.DEVICE;   // 기기의 코드명
+        String fingerprint = Build.FINGERPRINT; // 현재 빌드의 전체 고유 식별자
+        // 일반적으로 "OEM/브랜드/제품:빌드 버전:빌드 정보" 형식으로 되어있음
+        // google/sdk_gphone64_arm64/emu64a:14/UE1A.230829.036.A4/12096271:user/release-keys
+        String tags = Build.TAGS;       // 현재 빌드의 플래그, 빌드가 정식 출시된건지 테스트 용인지
+        // release-keys (정식 빌드)
+        // test-keys (테스트 또는 디버그 빌드)
+        String type = Build.TYPE;       // 현재 빌드의 타입
+        // user (정식 사용자 빌드)
+        // userdebug (디버그 가능 사용자 빌드, 에뮬레이터에서 자주 사용)
+        String[][] checks = {
+                {board, "goldfish"},        // AVD의 경우 9, 14 모두 goldfish가 포함됨
+                {board, "universal8895"},   // Nox의 경우 9, 12 모두 universal8895가 포함됨
+                {device, "generic_arm64"},  // AVD 9의 경우 generic_arm64
+                {device, "emu64a"},         // AVD 14의 경우 emu64a
+                {device, "beyond1q"},       // Nox 9와 12의 경우 beyond1q
+                {fingerprint, "test-keys"}, // nox의 경우 test-keys
+                {fingerprint, "userdebug"}, // nox의 경우 userdebug
+                {tags, "test-keys"},        // nox의 경우 test-keys
+                {tags, "userdebug"},        // nox의 경우 userdebug
+        };
+        for (String[] check : checks){
+            if( check[0].contains(check[1]) ){
+                Log.i(TAG, "isEmulator : \t\ttrue, " + check[1]);
+                return true;
+            }
+        }
+        Log.i(TAG, "isEmulator : \t\tfalse");
+        return false;
+    }
+
+    // Nox에만 존재하는 파일 검사
+    public static boolean isEmulator2( ) {
+        String[] nox_files = {
+                "init.superuser.rc",
+                "init.x86.rc"
+        };
+        for (String nox_file : nox_files){
+            File file = new File(nox_file);
+            if (file.exists()){
+                Log.i(TAG, "isEmulator2() : \ttrue, " + nox_file);
+                return true;
+            }
+        }
+        Log.i(TAG, "isEmulator2() : \tfalse");
+        return false;
     }
 
     // 코드 참고 - 라온 화이트햇 : https://core-research-team.github.io/2021-05-01/Universal-Android-Debugging-Detection-and-Bypass
