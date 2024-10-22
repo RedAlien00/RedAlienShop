@@ -58,7 +58,7 @@ public class DoDetect extends AppCompatActivity {
         try {
             for (String s : envPathArray) {
                 if ((new File(s, "su").exists())) {
-                    Log.i(TAG, "isRooted2() : \t\ttrue : " + new File(s, "su").toString());
+                    Log.i(TAG, "isRooted2() : \t\ttrue : " + new File(s, "su"));
                     return true;
                 }
             }
