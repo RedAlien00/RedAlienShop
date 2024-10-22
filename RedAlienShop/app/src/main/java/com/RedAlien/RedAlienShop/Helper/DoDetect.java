@@ -53,17 +53,13 @@ public class DoDetect extends AppCompatActivity {
 
     // Android 9에서는 Detect되지만 14에서는 안됨
     public static boolean isRooted2(){
-        boolean bool = false;
-
         // android는 주로 PATH에 등록된 경로를 통해, 실행 파일을 실행함
         String[] envPathArray = System.getenv("PATH").split(":");
-        int len = envPathArray.length;
         try {
-            for (int i=0; i<len ; i++) {
-                if( (new File(envPathArray[i], "su").exists()) ){
-                    Log.i(TAG, "isRooted2() : \t\ttrue : " + new File(envPathArray[i], "su").toString());
+            for (String s : envPathArray) {
+                if ((new File(s, "su").exists())) {
+                    Log.i(TAG, "isRooted2() : \t\ttrue : " + new File(s, "su").toString());
                     return true;
-                } else {
                 }
             }
         } catch (Exception e){
@@ -131,15 +127,14 @@ public class DoDetect extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
 
-            if( (line = reader.readLine()) != null ){
-                while ((line = reader.readLine()) != null) {
-                    if(line.contains("frida")){
-                        Log.i("Detect", "isFridaServerOn1() : " + "frida Server Detected - " + line );
-                        bool = true;
-                        break;
-                    }
+            while ((line = reader.readLine()) != null) {
+                if(line.contains("frida")){
+                    Log.i("Detect", "isFridaServerOn1() : " + "frida Server Detected - " + line );
+                    bool = true;
+                    break;
                 }
             }
+
             process.waitFor(); // 프로세스 종료
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
