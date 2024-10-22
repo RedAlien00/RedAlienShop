@@ -102,14 +102,8 @@ public class DoDetect extends AppCompatActivity {
         String board = Build.BOARD;     // 기기의 하드웨어 플렛폼
         String device = Build.DEVICE;   // 기기의 코드명
         String fingerprint = Build.FINGERPRINT; // 현재 빌드의 전체 고유 식별자
-        // 일반적으로 "OEM/브랜드/제품:빌드 버전:빌드 정보" 형식으로 되어있음
-        // google/sdk_gphone64_arm64/emu64a:14/UE1A.230829.036.A4/12096271:user/release-keys
         String tags = Build.TAGS;       // 현재 빌드의 플래그, 빌드가 정식 출시된건지 테스트 용인지
-        // release-keys (정식 빌드)
-        // test-keys (테스트 또는 디버그 빌드)
-        String type = Build.TYPE;       // 현재 빌드의 타입
-        // user (정식 사용자 빌드)
-        // userdebug (디버그 가능 사용자 빌드, 에뮬레이터에서 자주 사용)
+
         String[][] checks = {
                 {board, "goldfish"},        // AVD의 경우 9, 14 모두 goldfish가 포함됨
                 {board, "universal8895"},   // Nox의 경우 9, 12 모두 universal8895가 포함됨
@@ -123,24 +117,38 @@ public class DoDetect extends AppCompatActivity {
         };
         for (String[] check : checks){
             if( check[0].contains(check[1]) ){
-                Log.i(TAG, "isEmulator : \t\ttrue, " + check[1]);
+                Log.i(TAG, "isEmulator1() : \ttrue, " + check[1]);
                 return true;
             }
         }
-        Log.i(TAG, "isEmulator : \t\tfalse");
+        Log.i(TAG, "isEmulator1() : \tfalse");
         return false;
     }
 
-    // Nox에만 존재하는 파일 검사
     public static boolean isEmulator2( ) {
-        String[] nox_files = {
+        String[] Nox_files = {                  // Nox에만 존재하는 파일
                 "init.superuser.rc",
                 "init.x86.rc"
         };
-        for (String nox_file : nox_files){
-            File file = new File(nox_file);
+        String[] AVD_files = {
+                "/dev/goldfish_pipe",           // AVD 9,11에 존재하는 파일
+                "/dev/goldfish_sync",
+                "/dev/qemu_pipe",
+                "/dev/goldfish_address_space",  // AVD 14에 존재하는 파일
+                "/dev/goldfish_pipe_dprctd",
+                "/dev/goldfish_sync"
+        };
+        for (String Nox_file : Nox_files){
+            File file = new File(Nox_file);
             if (file.exists()){
-                Log.i(TAG, "isEmulator2() : \ttrue, " + nox_file);
+                Log.i(TAG, "isEmulator2() : \ttrue, " + Nox_file);
+                return true;
+            }
+        }
+        for (String AVD_file : AVD_files){
+            File file = new File(AVD_file);
+            if (file.exists()){
+                Log.i(TAG, "isEmulator2() : \ttrue, " + AVD_file);
                 return true;
             }
         }
