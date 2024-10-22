@@ -55,7 +55,6 @@ public class DoDetect extends AppCompatActivity {
     public static boolean isRooted2(){
         // android는 주로 PATH에 등록된 경로를 통해, 실행 파일을 실행함
         String[] envPathArray = System.getenv("PATH").split(":");
-        int len = envPathArray.length;
         try {
             for (String s : envPathArray) {
                 if ((new File(s, "su").exists())) {
