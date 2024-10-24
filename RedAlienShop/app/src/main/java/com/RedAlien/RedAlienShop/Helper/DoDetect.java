@@ -80,7 +80,7 @@ public class DoDetect extends AppCompatActivity {
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
             boolean result = br.readLine() != null;
-            Log.i(TAG, "isExecuteSu() : \t"+ String.valueOf(result) );
+            Log.i(TAG, "isExecuteSu() : \t"+ result );
 
             return result;
         } catch (Exception e){
@@ -99,7 +99,7 @@ public class DoDetect extends AppCompatActivity {
                 || Build.TAGS.contains("dev-keys")
                 || Build.MODEL.toLowerCase().contains("sdk")
                 || Build.PRODUCT.toLowerCase().contains("sdk");
-        Log.i(TAG, "isEmulator() : \t\t" + String.valueOf(result));
+        Log.i(TAG, "isEmulator() : \t\t" + result);
         return result;
     }
 
@@ -142,7 +142,7 @@ public class DoDetect extends AppCompatActivity {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        Log.i(TAG, "isFridaServerOn1() : " + String.valueOf(bool) ) ;
+        Log.i(TAG, "isFridaServerOn1() : " + bool ) ;
         return bool;
     }
 
@@ -165,7 +165,7 @@ public class DoDetect extends AppCompatActivity {
             thread.start();
             try {
                 thread.join();
-                Log.i(TAG, "isFridaServerOn2() : " + String.valueOf(bool[0]) );
+                Log.i(TAG, "isFridaServerOn2() : " + bool[0] );
             } catch (Exception e){
             }
         return bool[0];
