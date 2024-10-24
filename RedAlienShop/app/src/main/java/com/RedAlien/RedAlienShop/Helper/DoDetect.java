@@ -84,7 +84,7 @@ public class DoDetect extends AppCompatActivity {
 
             return result;
         } catch (Exception e){
-            Log.i(TAG, "isExecuteSu : \tfalse");
+            Log.i(TAG, "isExecuteSu() : \tfalse");
             return false;
         } finally {
             if (process != null) process.destroy();
@@ -112,9 +112,12 @@ public class DoDetect extends AppCompatActivity {
         int adbCheck_int = Settings.Global.getInt(context.getContentResolver(), Settings.Global.ADB_ENABLED, 0);
         // 사용자가 개발자 옵션을 활성화했는지 여부 : default 값으로 설정한 0이 아닐 경우, 활성화로 판단
         int developCheck_int = Settings.Global.getInt(context.getContentResolver(), Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
+        // 사용자가 디버그 앱을 지정했는지 여부 : 지정했다면 true
+        String debug_app = Settings.Global.getString(context.getContentResolver(), Settings.Global.DEBUG_APP);
 
-        result = adbCheck_int != 0 && developCheck_int != 0 ;
-        Log.i(TAG, "isDeveloper() : \t" + String.valueOf(result));
+        result = ( adbCheck_int != 0 && developCheck_int != 0 ) || debug_app.equals("com.RedAlien.RedAlienShop");
+        Log.i(TAG, "isDeveloper() : debugg app selected : " + debug_app);
+        Log.i(TAG, "isDeveloper() : \t" + result);
         return result;
     }
 
