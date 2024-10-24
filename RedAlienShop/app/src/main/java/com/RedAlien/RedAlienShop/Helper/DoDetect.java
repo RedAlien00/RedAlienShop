@@ -29,7 +29,6 @@ public class DoDetect extends AppCompatActivity {
         return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening();
     }
 
-    
     // Android 9에서는 Detect되지만 14에서는 안됨
     public static boolean isRooted1() {
         String[] paths = {"/sbin/su", "/system/bin/su", "/system/xbin/su", "/system/sd/xbin/su",
@@ -116,7 +115,7 @@ public class DoDetect extends AppCompatActivity {
         String debug_app = Settings.Global.getString(context.getContentResolver(), Settings.Global.DEBUG_APP);
 
         result = ( adbCheck_int != 0 && developCheck_int != 0 ) || "com.RedAlien.RedAlienShop".equals(debug_app);
-        Log.i(TAG, "isDeveloper() : debugg app selected : " + debug_app);
+        Log.i(TAG, "isDeveloper() : \tdebugg app selected : " + debug_app);
         Log.i(TAG, "isDeveloper() : \t" + result);
         return result;
     }
