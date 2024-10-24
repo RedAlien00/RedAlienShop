@@ -115,7 +115,7 @@ public class DoDetect extends AppCompatActivity {
         // 사용자가 디버그 앱을 지정했는지 여부 : 지정했다면 true
         String debug_app = Settings.Global.getString(context.getContentResolver(), Settings.Global.DEBUG_APP);
 
-        result = ( adbCheck_int != 0 && developCheck_int != 0 ) || debug_app.equals("com.RedAlien.RedAlienShop");
+        result = ( adbCheck_int != 0 && developCheck_int != 0 ) || "com.RedAlien.RedAlienShop".equals(debug_app);
         Log.i(TAG, "isDeveloper() : debugg app selected : " + debug_app);
         Log.i(TAG, "isDeveloper() : \t" + result);
         return result;
