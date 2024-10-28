@@ -63,7 +63,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutActivity extends BaseActivity {
     private static final String TAG = "Checkout";
     private static final String ADDRESS_SHAREDPREF = "UserAddress";
     private static final String SETTING_SHAREDPREF = "sharedPre_setting";

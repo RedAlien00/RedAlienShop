@@ -11,12 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.RedAlien.RedAlienShop.R;
 import com.RedAlien.RedAlienShop.Helper.Util;
+import com.RedAlien.RedAlienShop.R;
 
 import org.json.JSONObject;
 
@@ -28,7 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class CreateActActivity extends AppCompatActivity {
+public class CreateActActivity extends BaseActivity {
     private static final String SHARED_PREF_FILE = "sharedPre_setting" ;
     private static final String TAG = "CreateAct";
 

@@ -1,5 +1,6 @@
 package com.RedAlien.RedAlienShop.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.RedAlien.RedAlienShop.Helper.DoDetect;
 import com.RedAlien.RedAlienShop.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
@@ -76,6 +78,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void alertDialog() {
+        if (isFinishing()){
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("경고").setMessage("보안 위협이 감지 되었습니다\n앱을 종료합니다")
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -96,10 +101,6 @@ public class SplashActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-
-
-
 }
 
 

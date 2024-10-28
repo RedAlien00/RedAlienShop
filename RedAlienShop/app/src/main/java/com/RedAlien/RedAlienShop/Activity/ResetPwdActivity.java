@@ -9,11 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.RedAlien.RedAlienShop.R;
 import com.RedAlien.RedAlienShop.Helper.Util;
+import com.RedAlien.RedAlienShop.R;
 
 import org.json.JSONObject;
 
@@ -24,7 +23,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ResetPwdActivity extends AppCompatActivity {
+public class ResetPwdActivity extends BaseActivity {
     private final static String SHARED_PREF_FILE = "sharedPre_setting";
     private final static String TAG = "ResetPwd";
 

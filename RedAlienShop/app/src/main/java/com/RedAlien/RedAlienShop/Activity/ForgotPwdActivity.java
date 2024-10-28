@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
@@ -27,7 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class ForgotPwdActivity extends AppCompatActivity {
+public class ForgotPwdActivity extends BaseActivity {
     private EditText forgot_pwd_fullname, forgot_pwd_phonum, forgot_pwd_username;
     private Button forgot_pwd_btn;
     private String serverip, serverport;

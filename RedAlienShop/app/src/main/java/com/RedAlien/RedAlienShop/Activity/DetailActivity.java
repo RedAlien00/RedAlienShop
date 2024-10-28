@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -29,8 +28,8 @@ import com.RedAlien.RedAlienShop.Fragment.FragmentDetailAsk;
 import com.RedAlien.RedAlienShop.Fragment.FragmentDetailDetail;
 import com.RedAlien.RedAlienShop.Fragment.FragmentDetailReview;
 import com.RedAlien.RedAlienShop.Helper.MyContentProvider;
-import com.RedAlien.RedAlienShop.R;
 import com.RedAlien.RedAlienShop.Helper.Util;
+import com.RedAlien.RedAlienShop.R;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -45,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
     private static final String TAG = "DetailActivity";
     private static final String SHARED_PREF_FILE = "sharedPre_setting";
 
