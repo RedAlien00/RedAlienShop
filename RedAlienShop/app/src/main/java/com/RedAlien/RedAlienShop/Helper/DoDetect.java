@@ -20,13 +20,13 @@ public class DoDetect extends AppCompatActivity {
         System.loadLibrary("RedAlienShop_lib");
     }
 
-    public native boolean nativeIsFridaMapped();
     public native boolean nativeIsFridaBinary();
+    public native boolean nativeIsFridaMapped();
     public native boolean nativeIsFridaServerListening();
     public native void goodbye();
 
     public boolean nativeDetectAll(){
-        return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening();
+        return nativeIsFridaBinary() || nativeIsFridaMapped() || nativeIsFridaServerListening();
     }
 
     
