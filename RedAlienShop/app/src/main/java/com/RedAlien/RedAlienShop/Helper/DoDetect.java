@@ -26,7 +26,7 @@ public class DoDetect extends AppCompatActivity {
     public native void goodbye();
 
     public boolean nativeDetectAll(){
-        return nativeIsFridaMapped() | nativeIsFridaBinary() | nativeIsFridaServerListening();
+        return nativeIsFridaMapped() || nativeIsFridaBinary() || nativeIsFridaServerListening();
     }
 
     
