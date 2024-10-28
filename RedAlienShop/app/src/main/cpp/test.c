@@ -22,6 +22,10 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaBinary(JNIEnv *env, 
     const char *arch[] = { "arm", "arm64", "x86", "x86_64" };
     const int arch_size = sizeof(arch) / sizeof(arch[0]);
     const char *versions[] = { // 2024년에 나온 버전 시리즈들
+            "16.5.6",
+            "16.5.5",
+            "16.5.4",
+            "16.5.3",
             "16.5.2",
             "16.5.1",
             "16.5.0",
