@@ -14,7 +14,8 @@
 
 // 코드 참고 - 본인
 // Android 9, 14에서 모두 동작하는 것으로 확인
-// 기존에 사용하던 fopen( /data/local/tmp) 코드는 접근이 불가함 but access()를 사용하면 체크 가능
+// access()를 사용하는 이우 : fopen, opendir은 디렉토리를 직접 열기 때문에 권한이 요구됨
+// access()는 실제로 열지 않고 권한만 확인하기 때문에 접근이 가능함
 JNIEXPORT jboolean JNICALL
 Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaBinary(JNIEnv *env, jobject thiz){
     char filename_template[] = "/data/local/tmp/frida-server-%s-android-%s";
