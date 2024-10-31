@@ -101,19 +101,24 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaMapped(JNIEnv *env, 
 JNIEXPORT jboolean JNICALL
 Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaServerListening(JNIEnv *env,jobject thiz) {
     struct sockaddr_in sa;
-    memset(&sa, 0, sizeof(sa));
-    sa.sin_family = AF_INET;
-    sa.sin_port = htons(27042);
-    inet_aton("127.0.0.1", &(sa.sin_addr));
+    memset(&sa, 0, sizeof(sa)); // 구조체 초기화
+    struct sockaddr so;
+
+    inet_aton("127.0.0.1", &(sa.sin_addr)); // IP 주소를 바이너리 형태로 변환하여 구조체에 저장
+    sa.sin_port = htons(27042); // Little Endian > Big Endian
+    sa.sin_family = AF_INET;    // Address Family IPv4
+
+    // 소켓 초기화( IPv4, TCP )
     int sock = socket(AF_INET, SOCK_STREAM, 0);
 
-    if(  connect(sock, (struct sockaddr*)&sa, sizeof(sa)) == -1){
+    if(connect(sock, (struct sockaddr*)&sa, sizeof(sa)) == -1){
         __android_log_print(ANDROID_LOG_WARN, TAG, "Frida Server is not Listening");
+        close(sock);
         return false;
     }
     __android_log_print(ANDROID_LOG_WARN, TAG, "Frida Server is Listening !");
+    close(sock);
     return true;
-
 }
 
 JNIEXPORT void JNICALL
