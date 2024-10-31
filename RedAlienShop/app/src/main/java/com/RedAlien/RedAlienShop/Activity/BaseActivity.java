@@ -53,6 +53,5 @@ public class BaseActivity extends AppCompatActivity {
     // frida 감지 중지 메소드
     public void stopFridaDetection(){
         myHandler.removeCallbacks(fridaCheckRunnable);
-        Log.i("Test", "@@@@@StopFrida");
     }
 }
