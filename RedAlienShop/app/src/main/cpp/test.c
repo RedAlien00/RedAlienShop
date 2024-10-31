@@ -61,7 +61,7 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaBinary(JNIEnv *env, 
             sprintf(filename, filename_template,current_version, current_arch);
 
             if (access(filename, F_OK) == 0) {
-                __android_log_print(ANDROID_LOG_INFO, TAG, "Check! : %s", filename);
+                __android_log_print(ANDROID_LOG_WARN, TAG, "Check! : %s", filename);
                 return true;
             }
         }
@@ -79,7 +79,7 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaMapped(JNIEnv *env, 
     FILE *fp = fopen(PROC_MAPS, "r");
 
     if (fp == NULL) {
-        __android_log_print(ANDROID_LOG_WARN, TAG, "Failed to open : %s", PROC_MAPS);
+        __android_log_print(ANDROID_LOG_INFO, TAG, "Failed to open : %s", PROC_MAPS);
         return false;
     }
     while (fgets(buffer, sizeof(buffer), fp )){
@@ -89,7 +89,7 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaMapped(JNIEnv *env, 
             return true;
         }
     }
-    __android_log_print(ANDROID_LOG_WARN, TAG, "Frida library is not mapped");
+    __android_log_print(ANDROID_LOG_INFO, TAG, "Frida library is not mapped");
     return false;
 
 }
@@ -112,7 +112,7 @@ Java_com_RedAlien_RedAlienShop_Helper_DoDetect_nativeIsFridaServerListening(JNIE
     int sock = socket(AF_INET, SOCK_STREAM, 0);
 
     if(connect(sock, (struct sockaddr*)&sa, sizeof(sa)) == -1){
-        __android_log_print(ANDROID_LOG_WARN, TAG, "Frida Server is not Listening");
+        __android_log_print(ANDROID_LOG_INFO, TAG, "Frida Server is not Listening");
         close(sock);
         return false;
     }
