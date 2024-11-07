@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Binder;
-import android.util.Log;
 
 public class MyContentProvider extends ContentProvider {
     private static final String TAG = "MyContentProvider";
@@ -66,70 +65,54 @@ public class MyContentProvider extends ContentProvider {
             case ACCOUNT:
                 return "vnd.android.cursor.dir/vnd.com.RedAlien.provider.account";
             default:
-                return "시발련아";
+                throw new UnsupportedOperationException("Unknown URI " + uri);
         }
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-//        isUnauthorizedAccess();
+        isUnauthorizedAccess();
         long rowID;
         Uri _uri;
+        String tableName;
 
         switch (uriMatcher.match(uri)){
             case USER:
-                // 해당 테이블에 새로 삽입된 row번호가 반환됨
-                rowID = db.insert("user", "", values);
-                if (rowID > 0){
-                    // content://com.RedAlien.provider/user/<rowId> 형식의 URI를 반환한다.
-                    // 해당 메소드를 통하여,새로 삽입된 레코드에 직접 접근할 수 있는 URI를 생성한다
-                    _uri = ContentUris.withAppendedId(CONTENT_URI_USER, rowID);
-                    // _uri에 해당하는 데이터가 변경되었음을 알린다
-                    // 해당 데이터를 사용하고 있는 모든 클라이언트가 이를 인식하고, 데이터를 갱신할 수 있다
-                    getContext().getContentResolver().notifyChange(uri, null);
-
-                    return _uri;
-                }
+                tableName = "user";
+                break;
             case WISHLIST:
-                rowID = db.insert("wishlist", "", values);
-                if (rowID > 0){
-                    _uri = ContentUris.withAppendedId(CONTENT_URI_WISHLIST, rowID);
-                    getContext().getContentResolver().notifyChange(uri, null);
-
-                    return _uri;
-                }
+                tableName = "wishlist";
+                break;
             case BASKET:
-                rowID = db.insert("basket", "", values);
-                if (rowID > 0){
-                    _uri = ContentUris.withAppendedId(CONTENT_URI_BASKET, rowID);
-                    getContext().getContentResolver().notifyChange(uri, null);
-
-                    return _uri;
-                }
+                tableName = "basket";
+                break;
             case CARD:
-                rowID = db.insert("card", "", values);
-                if (rowID > 0){
-                    _uri = ContentUris.withAppendedId(CONTENT_URI_CARD, rowID);
-                    getContext().getContentResolver().notifyChange(uri, null);
-
-                    return _uri;
-                }
+                tableName = "card";
+                break;
             case ACCOUNT:
-                rowID = db.insert("account", "", values);
-                if (rowID > 0){
-                    _uri = ContentUris.withAppendedId(CONTENT_URI_ACCOUNT, rowID);
-                    getContext().getContentResolver().notifyChange(uri, null);
-
-                    return _uri;
-                }
+                tableName = "account";
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown URI " + uri);
         }
-        throw new SQLException("Failed to add a record into " + uri);
+        // 해당 테이블에 데이터가 insert된 후, 해당 데이터의 row번호가 반환됨
+        rowID = db.insert(tableName, "", values);
+        if (rowID == -1 ) {
+            throw new SQLException("Failed to add a record into " + uri);
+        }
+
+        // content://com.RedAlien.provider/user/<rowId> 형식의 URI를 반환한다.
+        // 해당 메소드를 통하여,새로 삽입된 레코드에 직접 접근할 수 있는 URI를 생성한다
+        _uri = ContentUris.withAppendedId(CONTENT_URI_USER, rowID);
+        // _uri에 해당하는 데이터가 변경되었음을 알린다
+        // 해당 데이터를 사용하고 있는 모든 클라이언트가 이를 인식하고, 데이터를 갱신할 수 있다
+        getContext().getContentResolver().notifyChange(uri, null);
+        return _uri;
     }
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-//        isUnauthorizedAccess();
-
+        isUnauthorizedAccess();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder(); // db 쿼리문을 쉽게 작성할 수 있도록 도와주는 유틸리티 클래스
         // 기존 SQLiteDatabase는 한 개 테이블만 쿼리문을 작성할 수 있으나, 이것을 사용할 경우, 여러 테이블에 대한 쿼리문 실행 가능
 
@@ -156,35 +139,35 @@ public class MyContentProvider extends ContentProvider {
 
         // 데이터를 가리키는 uri의 데이터가 변경될 경우, cursor가 이를 감지하도록 등록한다
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-        Log.i(TAG, "query() 호출 !");
-
         return cursor;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-//        isUnauthorizedAccess();
+        isUnauthorizedAccess();
         int count; // update로 영향받은 row수
+        String tableName;
 
         switch (uriMatcher.match(uri)){
             case USER:
-                count = db.update("user", values, selection, selectionArgs);
+                tableName = "user";
                 break;
             case WISHLIST:
-                count = db.update("wishlist", values, selection, selectionArgs);
+                tableName = "wishlist";
                 break;
             case BASKET:
-                count = db.update("basket", values, selection, selectionArgs);
+                tableName = "basket";
                 break;
             case CARD:
-                count = db.update("card", values, selection, selectionArgs);
+                tableName = "card";
                 break;
             case ACCOUNT:
-                count = db.update("account", values, selection, selectionArgs);
+                tableName = "account";
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown URI " + uri);
         }
+        count = db.update(tableName, values, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
@@ -193,26 +176,28 @@ public class MyContentProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         isUnauthorizedAccess();
         int count; // delete로 영향을 받은 행수
+        String tableName;
 
         switch (uriMatcher.match(uri)){
             case USER:
-                count = db. delete("user", selection, selectionArgs);
+                tableName = "user";
                 break;
             case WISHLIST:
-                count = db.delete("wishlist", selection, selectionArgs);
+                tableName = "wishlist";
                 break;
             case BASKET:
-                count = db.delete("basket", selection, selectionArgs);
+                tableName = "basket";
                 break;
             case CARD:
-                count = db.delete("card", selection, selectionArgs);
+                tableName = "card";
                 break;
             case ACCOUNT:
-                count = db.delete("account", selection, selectionArgs);
+                tableName = "account";
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown URI " + uri);
         }
+        count = db. delete(tableName, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
