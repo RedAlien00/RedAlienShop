@@ -9,6 +9,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.os.Binder;
+import android.util.Log;
 
 public class MyContentProvider extends ContentProvider {
     private static final String TAG = "MyContentProvider";
@@ -47,8 +49,11 @@ public class MyContentProvider extends ContentProvider {
         return db != null;
     }
 
+    // 테스트 결과, shell에서 content gettype --uri ... 를 통해서는 호출 할 수 없음 > 예외 발생함
     @Override
     public String getType(Uri uri) {
+        isUnauthorizedAccess();
+
         switch (uriMatcher.match(uri)){
             case USER:
                 return "vnd.android.cursor.dir/vnd.com.RedAlien.provider.user";
@@ -61,17 +66,17 @@ public class MyContentProvider extends ContentProvider {
             case ACCOUNT:
                 return "vnd.android.cursor.dir/vnd.com.RedAlien.provider.account";
             default:
-                throw new UnsupportedOperationException("Unknown URI : " + uri);
+                return "시발련아";
         }
     }
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+//        isUnauthorizedAccess();
         long rowID;
         Uri _uri;
 
         switch (uriMatcher.match(uri)){
-            //
             case USER:
                 // 해당 테이블에 새로 삽입된 row번호가 반환됨
                 rowID = db.insert("user", "", values);
@@ -115,7 +120,6 @@ public class MyContentProvider extends ContentProvider {
                     _uri = ContentUris.withAppendedId(CONTENT_URI_ACCOUNT, rowID);
                     getContext().getContentResolver().notifyChange(uri, null);
 
-
                     return _uri;
                 }
         }
@@ -124,7 +128,8 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        long rowId;
+//        isUnauthorizedAccess();
+
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder(); // db 쿼리문을 쉽게 작성할 수 있도록 도와주는 유틸리티 클래스
         // 기존 SQLiteDatabase는 한 개 테이블만 쿼리문을 작성할 수 있으나, 이것을 사용할 경우, 여러 테이블에 대한 쿼리문 실행 가능
 
@@ -147,17 +152,18 @@ public class MyContentProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown URI " + uri);
         }
-
         Cursor cursor = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
 
         // 데이터를 가리키는 uri의 데이터가 변경될 경우, cursor가 이를 감지하도록 등록한다
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        Log.i(TAG, "query() 호출 !");
 
         return cursor;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+//        isUnauthorizedAccess();
         int count; // update로 영향받은 row수
 
         switch (uriMatcher.match(uri)){
@@ -185,6 +191,7 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+        isUnauthorizedAccess();
         int count; // delete로 영향을 받은 행수
 
         switch (uriMatcher.match(uri)){
@@ -210,4 +217,18 @@ public class MyContentProvider extends ContentProvider {
         return count;
     }
 
+    // shell에서 content query --uri ... 와 같은 비정상적인 접근 방지
+    public void isUnauthorizedAccess(){
+        int callingUID = Binder.getCallingUid();  // 호출한 UID
+        String[] callingPackages = getContext().getPackageManager().getPackagesForUid(callingUID);
+
+        if (callingUID == 0) throw new SecurityException("Unauthorized Access from root");
+        if (callingPackages != null){
+            for (String callingPackage : callingPackages){
+                if( callingPackage.equals("com.android.shell") || callingPackage.equals("com.android.adb") ){
+                    throw new SecurityException("Unauthorized Access from shell");
+                }
+            }
+        }
+    }
 }
