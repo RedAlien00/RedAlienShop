@@ -19,12 +19,11 @@
 * Android Version : 9 ~ 14
 <br>
 
-# Issue
-* 확인되는대로 업데이트 하겠습니다
+# Info & Update
+* Detact가 될 경우, 경고창은 띄우지만 ${\textsf{\color{magenta}앱은 종료되지 않습니다}}$
 <br>
 
-# Info
-* Detact가 될 경우, 경고창은 띄우지만 ${\textsf{\color{magenta}앱은 종료되지 않습니다}}$
+* Update - SQLInjection 추가 ( 2024/11/11 )
 <br>
 
 # Implementation vulnerabilities
@@ -40,15 +39,16 @@
 <br>
 
 7. Exported Activity
-8. Vulnerable Content Provider
-9. Insecure Logging
-10. Insecure HTTP connections
+8. Exported Content Provider
+9. SQLInjection ${\textsf{\color{magenta}( 추가 - 2024/11/11 )}}$
+10. Insecure Logging
+11. Insecure HTTP connections
 <br>
 
-11. Weak Cryptography
-12. Insecure External storage
-13. Insecure Internal storage
-14. Point Tampering Vulnerability
+12. Weak Cryptography
+13. Insecure External storage
+14. Insecure Internal storage
+15. Point Tampering Vulnerability
 <br>
 
 # Install and run the server
