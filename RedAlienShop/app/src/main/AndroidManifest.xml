@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <permission
+        android:name="com.RedAlien.PROVIDER_PERMISSION"
+        android:protectionLevel="normal"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -25,6 +29,7 @@
         tools:ignore="HardcodedDebugMode"
         tools:targetApi="tiramisu">
         <provider
+            android:permission="com.RedAlien.PROVIDER_PERMISSION"
             android:name=".Helper.MyContentProvider"
             android:authorities="com.RedAlien.provider"
             android:enabled="true"
