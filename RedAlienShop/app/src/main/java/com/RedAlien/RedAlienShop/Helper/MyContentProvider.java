@@ -3,13 +3,19 @@ package com.RedAlien.RedAlienShop.Helper;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
+import android.content.pm.InstallSourceInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.os.Binder;
+import android.util.Log;
+
+import java.util.Map;
 
 public class MyContentProvider extends ContentProvider {
     private static final String TAG = "MyContentProvider";
@@ -28,6 +34,20 @@ public class MyContentProvider extends ContentProvider {
     private static final int CARD = 4;
     private static final int ACCOUNT = 5;
 
+    private static final Map<String, String> storePackages = Map.of(
+            "com.android.vending", "Google Playstore",
+            "com.skt.skaf.A000Z00040", "SKT OneStore",
+            "com.kt.olleh.storefront", "KT OneStore",
+            "android.lgt.appstore", "LG U+ OneStore",
+            "com.lguplus.appstore", "OneStore",
+            "com.sec.android.app.samsungapps", "Galaxy Apps",
+            "com.sec.android.easyMover.Agent", "SAMSUNG smary switch"
+    );
+
+    private String[] callingPackages;
+    private Context context;
+    private SQLiteDatabase db;
+
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, "user", USER);
@@ -37,14 +57,13 @@ public class MyContentProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, "account", ACCOUNT);
     }
 
-    private SQLiteDatabase db;
-
     public MyContentProvider() {}
 
     @Override
     public boolean onCreate() {
         DBHelper dbHelper = new DBHelper(getContext());
         db = dbHelper.getWritableDatabase();
+        context = getContext();
         return db != null;
     }
 
@@ -52,6 +71,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public String getType(Uri uri) {
         isUnauthorizedAccess();
+        isInstalledFromStore();
 
         switch (uriMatcher.match(uri)){
             case USER:
@@ -72,6 +92,8 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         isUnauthorizedAccess();
+        isInstalledFromStore();
+
         long rowID;
         Uri _uri;
         String tableName;
@@ -113,6 +135,8 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         isUnauthorizedAccess();
+        isInstalledFromStore();
+
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder(); // db 쿼리문을 쉽게 작성할 수 있도록 도와주는 유틸리티 클래스
         // 기존 SQLiteDatabase는 한 개 테이블만 쿼리문을 작성할 수 있으나, 이것을 사용할 경우, 여러 테이블에 대한 쿼리문 실행 가능
 
@@ -145,6 +169,8 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         isUnauthorizedAccess();
+        isInstalledFromStore();
+
         int count; // update로 영향받은 row수
         String tableName;
 
@@ -175,6 +201,8 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         isUnauthorizedAccess();
+        isInstalledFromStore();
+
         int count; // delete로 영향을 받은 행수
         String tableName;
 
@@ -205,7 +233,7 @@ public class MyContentProvider extends ContentProvider {
     // shell에서 content query --uri ... 와 같은 비정상적인 접근 방지
     public void isUnauthorizedAccess(){
         int callingUID = Binder.getCallingUid();  // 호출한 UID
-        String[] callingPackages = getContext().getPackageManager().getPackagesForUid(callingUID);
+        callingPackages = getContext().getPackageManager().getPackagesForUid(callingUID);
 
         if (callingUID == 0) throw new SecurityException("Unauthorized Access from root");
         if (callingPackages != null){
@@ -213,6 +241,47 @@ public class MyContentProvider extends ContentProvider {
                 if( callingPackage.equals("com.android.shell") || callingPackage.equals("com.android.adb") ){
                     throw new SecurityException("Unauthorized Access from shell");
                 }
+            }
+        }
+    }
+
+    // Google Playstore를 통해 설치했다면  com.android.vending 가 반환됨
+    // adb를 통해 설치 혹은 root권한으로 content를 통해 접근해도 null이 반환됨
+    public void isInstalledFromStore(){
+        PackageManager pm;
+        if (context == null || callingPackages == null || (pm =context.getPackageManager()) == null) {
+            String msg = (context == null) ? "context is null" :
+                        (callingPackages == null) ? "callingPackages is null" :
+                        "PackageManager is null";
+            Log.i(TAG, msg);
+            throw new SecurityException(msg);
+        }
+
+        String installer = null;
+        try {
+            for (String callingPackage : callingPackages) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    InstallSourceInfo installSourceInfo = pm.getInstallSourceInfo(callingPackage);
+                    installer = installSourceInfo.getInstallingPackageName();
+                } else {
+                    installer = pm.getInstallerPackageName(callingPackage);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (installer == null) {
+            throw new SecurityException("Client app is installed via ADB");
+        }
+
+        for (Map.Entry<String, String> entry : storePackages.entrySet()){
+            String key   = entry.getKey();
+            String value = entry.getValue();
+
+            if (key.equals(installer)){
+                Log.i(TAG, "Installed from " + value);
+                return;
             }
         }
     }
