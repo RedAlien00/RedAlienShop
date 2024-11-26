@@ -116,8 +116,6 @@ public class ResetPwdActivity extends AppCompatActivity {
 
                         String line;
                         if ( (line = bufferedReader.readLine()) != null ){
-                            Log.i(TAG, line);
-
                             JSONObject response = new JSONObject(line);
                             String msg = response.getString("message");
                             if (!msg.equals("Password reset Failed !")){

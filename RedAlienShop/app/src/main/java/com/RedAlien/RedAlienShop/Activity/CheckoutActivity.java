@@ -401,8 +401,6 @@ public class CheckoutActivity extends AppCompatActivity {
                                     Intent intent = new Intent(CheckoutActivity.this, SuccessfulActivity.class);
                                     startActivity(intent);
                                     }, 2000);
-                                Log.i(TAG, "userUsePoints : " + String.valueOf(userUsepoints));
-                                Log.i(TAG, "total_final_price : " + String.valueOf(checkout_total_final_price));
                             }
                         })
                         .setNegativeButton("아니요", new DialogInterface.OnClickListener() {

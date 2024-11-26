@@ -330,8 +330,6 @@ public class LoginActivity extends AppCompatActivity {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
                         String line;
                         if( (line = bufferedReader.readLine()) != null ){
-                            Log.i(TAG, "isExistAccount() : " + line);
-
                             JSONObject response = new JSONObject(line);
                             String message1 = response.getString("message");
                             if (response.has("points")){

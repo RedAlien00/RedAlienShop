@@ -186,6 +186,7 @@ public class MyContentProvider extends ContentProvider {
                 break;
             case ACCOUNT:
                 tableName = "account";
+
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown URI " + uri);
