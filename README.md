@@ -40,7 +40,7 @@
 
 7. Exported Activity
 8. Exported Content Provider
-9. SQLInjection ${\textsf{\color{magenta}( 추가 - 2024/11/11 )}}$
+9. Content Provider SQLInjection ${\textsf{\color{magenta}( 추가 - 2024/11/11 )}}$
 10. Insecure Logging
 11. Insecure HTTP connections
 <br>
