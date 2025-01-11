@@ -38,7 +38,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 
 
 public class FragmentPaymentMethodCard extends Fragment  {
@@ -92,8 +92,8 @@ public class FragmentPaymentMethodCard extends Fragment  {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
                     String line;
                     if ((line = reader.readLine()) != null ){
-                        SecretKeySpec secretKeySpec = Crypto.generateKEY();
-                        String decryptedText = Crypto.decypt(line, secretKeySpec);
+                        SecretKey secretKey = Crypto.loadKey();
+                        String decryptedText = Crypto.decypt(line, secretKey);
 
                         int a = 0;
                         int b = 4;
@@ -244,7 +244,7 @@ public class FragmentPaymentMethodCard extends Fragment  {
                 list_arg.add(year);
                 list_arg.add(cvc);
                 try {
-                    SecretKeySpec secretKey =  Crypto.generateKEY();
+                    SecretKey secretKey =  Crypto.generateKEY();
                     FileOutputStream fos = new FileOutputStream(file);
                     for (String arg : list_arg){
                         String encryptText = Crypto.encrypt(arg, secretKey);
