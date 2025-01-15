@@ -714,7 +714,7 @@ public class CheckoutActivity extends AppCompatActivity {
         public void saveAddress(){
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("person", person.getText().toString().trim());
-            editor.putString("postalcode", address.getText().toString().trim());
+            editor.putString("postalcode", postalcode.getText().toString().trim());
             editor.putString("address", address.getText().toString().trim());
             editor.putString("detail_address", detail_address.getText().toString().trim());
             editor.putString("phonumber", phonumber.getText().toString().trim());
