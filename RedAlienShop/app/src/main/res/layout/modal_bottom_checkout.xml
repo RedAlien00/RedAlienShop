@@ -35,7 +35,7 @@
         android:layout_marginEnd="20dp"
         android:hint="받는 분"
         android:inputType="text"
-        android:maxLength="8" />
+        android:maxLength="20" />
     <LinearLayout
         android:gravity="center"
         android:layout_marginStart="20dp"
@@ -50,8 +50,8 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:hint="우편번호"
-            android:maxLength="5"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="8" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delivery_address_search_btn"
@@ -75,7 +75,7 @@
         android:layout_marginEnd="20dp"
         android:hint="주소"
         android:inputType="text|textPostalAddress"
-        android:maxLength="18" />
+        android:maxLength="30" />
 
     <EditText
         android:id="@+id/delivery_address_detail_address"
