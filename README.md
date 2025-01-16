@@ -23,7 +23,9 @@
 * Detact가 될 경우, 경고창은 띄우지만 ${\textsf{\color{magenta}앱은 종료되지 않습니다}}$
 <br>
 
-* Update - SQLInjection 추가 ( 2024/11/11 )
+* Update - SQLInjection 추가    ( 2024/11/11 )
+* Update - Algorithm 변경    ( 2025/01/14 )
+    - Blowfish > AES
 <br>
 
 # Implementation vulnerabilities
