@@ -72,6 +72,9 @@ android {
 }
 
 dependencies {
+    implementation("net.zetetic:sqlcipher-android:4.6.1@aar")
+    implementation("androidx.sqlite:sqlite:2.2.0")
+
     implementation("com.airbnb.android:lottie-compose:6.4.1")
     implementation("com.caverock:androidsvg:1.4")
     implementation("androidx.appcompat:appcompat:1.7.0")

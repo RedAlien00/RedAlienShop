@@ -1,19 +1,28 @@
 package com.RedAlien.RedAlienShop.Helper;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import androidx.annotation.Nullable;
 
-public class DBHelper extends SQLiteOpenHelper {
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
+
+public class CipherDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "shop.db";
     private static final int DATABASE_VERSION = 1;
+    private static final String PASSWORD = "My Password";
 
-    public DBHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public CipherDBHelper(Context context) {
+        super(context, DATABASE_NAME, PASSWORD, null, DATABASE_VERSION, DATABASE_VERSION, null, null, true);
+        SQLiteDatabase.CursorFactory cursorFactory;
+
+        System.loadLibrary("sqlcipher");
     }
 
-    // image, brand, title, pricec, commnets, comments_count
+
+    @Override
+    public SQLiteDatabase getWritableDatabase() {
+        return super.getWritableDatabase();
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE user(" +

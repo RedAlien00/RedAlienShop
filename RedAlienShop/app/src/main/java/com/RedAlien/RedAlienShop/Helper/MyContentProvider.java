@@ -6,9 +6,10 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 public class MyContentProvider extends ContentProvider {
     private static final String TAG = "MyContentProvider";
@@ -42,8 +43,10 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        DBHelper dbHelper = new DBHelper(getContext());
-        db = dbHelper.getWritableDatabase();
+        CipherDBHelper cipherDBHelper = new CipherDBHelper(getContext());
+        db = cipherDBHelper.getWritableDatabase();
+//        DBHelper dbHelper = new DBHelper(getContext());
+//        db = dbHelper.getWritableDatabase();
         return db != null;
     }
 
@@ -113,28 +116,28 @@ public class MyContentProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)){
             case USER:
-                qb.setTables("user");
-                break;
+//                qb.setTables("user");
+                return db.query("user", projection, selection, selectionArgs, null, null, sortOrder);
             case WISHLIST:
-                qb.setTables("wishlist");
-                break;
+//                qb.setTables("wishlist");
+                return db.query("wishlist", projection, selection, selectionArgs, null, null, sortOrder);
             case BASKET:
-                qb.setTables("basket");
-                break;
+//                qb.setTables("basket");
+                return db.query("basket", projection, selection, selectionArgs, null, null, sortOrder);
             case CARD:
-                qb.setTables("card");
-                break;
+//                qb.setTables("card");
+                return db.query("card", projection, selection, selectionArgs, null, null, sortOrder);
             case ACCOUNT:
-                qb.setTables("account");
-                break;
+//                qb.setTables("account");
+                return db.query("account", projection, selection, selectionArgs, null, null, sortOrder);
             default:
                 throw new UnsupportedOperationException("Unknown URI " + uri);
         }
-        Cursor cursor = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
+//        Cursor cursor = qb.query( db, projection, selection, selectionArgs, null, null, sortOrder);
 
         // 데이터를 가리키는 uri의 데이터가 변경될 경우, cursor가 이를 감지하도록 등록한다
-        cursor.setNotificationUri(getContext().getContentResolver(), uri);
-        return cursor;
+//        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+//        return cursor;
     }
 
     @Override
