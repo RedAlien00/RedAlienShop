@@ -10,11 +10,15 @@ public class CipherDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String PASSWORD = "My Password";
 
-    public CipherDBHelper(Context context) {
-        super(context, DATABASE_NAME, PASSWORD, null, DATABASE_VERSION, DATABASE_VERSION, null, null, true);
-        SQLiteDatabase.CursorFactory cursorFactory;
-
+    static {
         System.loadLibrary("sqlcipher");
+    }
+
+    public CipherDBHelper(Context context) {
+        super(
+            context, DATABASE_NAME, PASSWORD, null, DATABASE_VERSION, DATABASE_VERSION,
+null, null, true
+        );
     }
 
 
