@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,16 +37,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.RedAlien.RedAlienShop.Adapter.AdapterCheckout;
-import com.RedAlien.RedAlienShop.Helper.DBHelper;
 import com.RedAlien.RedAlienShop.Fragment.FragmentPaymentMethodAccount;
 import com.RedAlien.RedAlienShop.Fragment.FragmentPaymentMethodCard;
 import com.RedAlien.RedAlienShop.Fragment.FragmentPaymentMethodSimple;
+import com.RedAlien.RedAlienShop.Helper.CipherDBHelper;
+import com.RedAlien.RedAlienShop.Helper.Util;
 import com.RedAlien.RedAlienShop.ItemCheckoutlist;
 import com.RedAlien.RedAlienShop.R;
-import com.RedAlien.RedAlienShop.Helper.Util;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -85,7 +86,6 @@ public class CheckoutActivity extends AppCompatActivity {
     private SharedPreferences setting_sharedPref;
     private ArrayList<ItemCheckoutlist> arrayList;
     private NumberFormat numberFormat;
-    private DBHelper dbHelper;
     private SQLiteDatabase db;
     private ProgressBar progressBar;
     private Handler handler;
@@ -144,8 +144,9 @@ public class CheckoutActivity extends AppCompatActivity {
         setting_sharedPref = getSharedPreferences(SETTING_SHAREDPREF, MODE_PRIVATE);
         progressBar = findViewById(R.id.checkout_progress);
         handler = new Handler();
-        dbHelper = new DBHelper(this);
-        db = dbHelper.getWritableDatabase();
+
+        CipherDBHelper cipherDBHelper = new CipherDBHelper(this);
+        db = cipherDBHelper.getWritableDatabase();
 
         initOrderProduct_container();
         initPointContainer();
@@ -153,8 +154,6 @@ public class CheckoutActivity extends AppCompatActivity {
         initCheckoutMethodContainer();
 
         initCheckoutCommitBtn();
-
-
     }
 
     public void initRecyclerView(){
