@@ -9,21 +9,22 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.util.Log;
 
-import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class MyNetwork {
     private final static String TAG = "MyNetwork";
     private String serverip, serverport, str_serverurl;
 
-    private HttpURLConnection httpURLConnection;
+    private HttpsURLConnection httpsURLConnection;
     private boolean isNetworkConnected = false;
 
     public MyNetwork(){};
     public MyNetwork(String serverip, String serverport, boolean isNetworkConnected )  {
         this.serverip = serverip.trim();
         this.serverport = serverport.trim();
-        this.str_serverurl = "http://" + serverip + ":" + serverport ;
+        this.str_serverurl = "https://" + serverip + ":" + serverport ;
         this.isNetworkConnected = isNetworkConnected;
     }
 
@@ -38,12 +39,11 @@ public class MyNetwork {
                 public void run() {
                     try {
                         URL url = new URL(str_serverurl);
-                        httpURLConnection = (HttpURLConnection) url.openConnection();
-                        httpURLConnection.setRequestMethod("GET");
-                        httpURLConnection.setConnectTimeout(3000);   // 꼭 설정해줘야 한다 안그러면 오래걸림
+                        httpsURLConnection = (HttpsURLConnection) url.openConnection();
+                        httpsURLConnection.setRequestMethod("GET");
+                        httpsURLConnection.setConnectTimeout(3000);   // 꼭 설정해줘야 한다 안그러면 오래걸림
 
-                        int responseCode = httpURLConnection.getResponseCode();  // 응답 코드를 가져온 후
-
+                        int responseCode = httpsURLConnection.getResponseCode();  // 응답 코드를 가져온 후
 
                         if (responseCode == 200) {
                             Log.i(TAG, responseCode + " : Success connect to server");
@@ -55,7 +55,7 @@ public class MyNetwork {
                         bool[0] = false;
                         Log.i(TAG, e + " : Fail connect to server");
                     } finally {
-                        httpURLConnection.disconnect();
+//                        httpsURLConnection.disconnect();
                     }
                 }
             });
