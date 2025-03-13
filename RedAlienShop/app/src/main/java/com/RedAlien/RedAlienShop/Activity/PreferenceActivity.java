@@ -1,21 +1,18 @@
 package com.RedAlien.RedAlienShop.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.RedAlien.RedAlienShop.Helper.MyNetwork;
 import com.RedAlien.RedAlienShop.R;
@@ -131,31 +128,4 @@ public class PreferenceActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-// 이어서 해야 하는 내용
-// 서버 연결 시, Dialog 창 드는거 실패함 > 현재, 서버연결까지 구현했으니, Dialog는 나중에 구현하자
-// 로그인부터 나머지 구현하자
-
-//    dialog = new Dialog(context);
-//    dialog.requestWindowFeature(Window.FEATURE_ACTION_BAR);
-//    dialog.setContentView(R.layout.progress_bar);
-//    dialog.setCanceledOnTouchOutside(false);
-//    dialog.show();
-//    서버 연결 시도할 때, Dialog 뜨게 하고 싶을 때 위의 코드 그대로 쓰면 됨
-
-    // 네트워크 조회, 로그인 클릭 시 activity간 데이터 전달까지 구현해놓음
-    // @@ 아래는 구현해야할 것들
-    // 1. 루팅 감지 여부 조회
-    // 2. Frida 감지 여부 조회
-    // 2. 서버단과 함께 구현해야할 것들
-    // preferenceActivity에서 버튼 클릭시 flask로 구현한 서버 연결
-    // 로그인 시, 서버 DB와 조회해서 로그인 여부
-    // 회원 가입 시, 서버 DB에 저장
-    // 로그인 한 상태에서, 서버 DB에 계좌등록
-    // ( 여유 있을 때 ) 앱 실행 시, 부팅 화면 구현해보기
-
 }
