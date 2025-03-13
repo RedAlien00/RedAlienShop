@@ -33,7 +33,8 @@ public class SplashActivity extends AppCompatActivity {
         initLogoAnimation();
         initSharedPref();
 
-        if (DoDetect.isRooted1()
+        if (    DoDetect.isDebuggerAttached()
+                ||DoDetect.isRooted1()
                 || DoDetect.isRooted2()
                 || DoDetect.isExecuteSu()
                 || DoDetect.isEmulator()

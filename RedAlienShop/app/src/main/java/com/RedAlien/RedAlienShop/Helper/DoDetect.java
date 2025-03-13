@@ -9,12 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.Iterator;
 
 public class DoDetect extends AppCompatActivity {
     private static final String TAG = "Detect";
+    private static final String STATUS_FILE = "/proc/self/status";
 
     static {
         System.loadLibrary("RedAlienShop_lib");
@@ -116,6 +119,30 @@ public class DoDetect extends AppCompatActivity {
         result = adbCheck_int != 0 && developCheck_int != 0 ;
         Log.i(TAG, "isDeveloper() : \t" + String.valueOf(result));
         return result;
+    }
+
+    // Debugger가 연결되어 Debugging중인지 체크하는 함수
+    public static boolean isDebuggerAttached() {
+        String temp1 = null;
+        String temp2 = null;
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(STATUS_FILE));
+            Iterator<String> iterator = bufferedReader.lines().iterator();
+
+            while ( iterator.hasNext() ) {
+                temp1 = iterator.next();
+                temp2 = temp1.startsWith("TracerPid") ? temp1.split(":")[1].trim() : null;
+                if ( temp2 != null && !temp2.equals("0") ) {
+                        Log.i(TAG, "isDebuggerAttached() : " + temp1);
+                        return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        Log.i(TAG, "isDebuggerAttached() : false");
+        return false;
     }
 
     // Android 9에서는 작동하나, Android 14에서는 작동 X
