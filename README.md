@@ -16,7 +16,7 @@
 * RedAlienShop Server : <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"> 
 <br>
 
-* Android Version : 9 ~ 14
+* Tested on Android versions 9 ~ 14
 <br>
 
 # Info & Update
