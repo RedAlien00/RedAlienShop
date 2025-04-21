@@ -31,26 +31,32 @@
 # Implementation vulnerabilities
 0. Weak Login Credentials
 1. Application Debuggable
-2. Allow Data Backup
+    - 풀이 : https://redalien.tistory.com/44
+3. Allow Data Backup
+    - 풀이 : https://redalien.tistory.com/45
 <br>
 
-3. Root Detection and Bypass
-4. Emulator Detection and Bypass
-5. Developer Option Detection and Bypass
-6. Frida Detection and Bypass
+5. Root Detection and Bypass
+    - 풀이 : https://redalien.tistory.com/48
+7. Emulator Detection and Bypass
+    - 풀이 : https://redalien.tistory.com/49
+9. Developer Option Detection and Bypass
+    - 풀이 : https://redalien.tistory.com/50
+11. Frida Detection and Bypass
+    - 풀이 : https://redalien.tistory.com/51
 <br>
 
-7. Exported Activity
-8. Exported Content Provider
-9. Content Provider SQLInjection ${\textsf{\color{magenta}( 추가 - 2024/11/11 )}}$
-10. Insecure Logging
-11. Insecure HTTP connections
+13. Exported Activity
+14. Exported Content Provider
+15. Content Provider SQLInjection ${\textsf{\color{magenta}( 추가 - 2024/11/11 )}}$
+16. Insecure Logging
+17. Insecure HTTP connections
 <br>
 
-12. Weak Cryptography
-13. Insecure External storage
-14. Insecure Internal storage
-15. Point Tampering Vulnerability
+18. Weak Cryptography
+19. Insecure External storage
+20. Insecure Internal storage
+21. Point Tampering Vulnerability
 <br>
 
 # Install and run the server
